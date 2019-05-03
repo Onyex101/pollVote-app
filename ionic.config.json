@@ -1,5 +1,7 @@
 {
   "name": "pollvote",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

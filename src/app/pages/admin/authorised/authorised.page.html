@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Authorised Voters</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <div *ngIf="loadInfo">
+    <ion-list>
+      <ion-item *ngFor="let auth of authUsers">
+        <ion-avatar item-start>
+          <img src="assets/imgs/avatar.png">
+        </ion-avatar>
+        <ion-label style="padding-left: 10px;">{{auth.full_name}}</ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+
+  <div *ngIf="!loadInfo" text-center>
+    <p>No users authorised yet!!</p>
+  </div>
+</ion-content>

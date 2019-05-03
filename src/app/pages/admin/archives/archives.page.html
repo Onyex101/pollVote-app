@@ -1,0 +1,69 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Archives</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="automaticClose = !automaticClose">
+        <ion-icon slot="icon-only" name="close" *ngIf="automaticClose"></ion-icon>
+        <ion-icon slot="icon-only" name="resize" *ngIf="!automaticClose"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content no-padding>
+  <div style="padding-top: 8px;">
+    <ion-list *ngFor="let item of load; let i = index;" class="accordion-list" lines="none" detail="false" no-padding>
+      <ion-item tappable (click)="toggleSection(i)" [ngClass]="{'section-active': item.open, 'section': !item.open}">
+        <ion-icon slot="start" name="arrow-forward" *ngIf="!item.open"></ion-icon>
+        <ion-icon slot="start" name="arrow-down" *ngIf="item.open"></ion-icon>
+        <ion-label>
+          {{item.question}}
+        </ion-label>
+      </ion-item>
+      <div *ngIf="item.open" class="top">
+        <div class="title">Question</div>
+        <div class="sub-title" text-wrap>{{item.question}}</div>
+        <div class="title">Options</div>
+        <ion-list lines="none" no-padding>
+          <ion-item *ngFor="let opt of item.options">
+            <ion-label text-wrap>{{opt.field}}</ion-label>
+            <ion-badge slot="end">{{opt.votes}}</ion-badge>
+          </ion-item>
+        </ion-list>
+        <div class="title">Start Date</div>
+        <div class="sub-title">{{item.startDate}}</div>
+        <div class="title">End Date</div>
+        <div class="sub-title">{{item.endDate}}</div>
+        <ion-row>
+          <ion-col>
+            <div text-center>
+              <ion-button color="{{color.voted}}" (click)="setColor()" expand="full">Voted</ion-button>
+            </div>
+          </ion-col>
+          <ion-col>
+            <div text-center>
+              <ion-button color="{{color.notVoted}}" (click)="setColor()" expand="full">not Voted</ion-button>
+            </div>
+          </ion-col>
+        </ion-row>
+        <div *ngIf="!showList">
+          <ion-list>
+            <ion-item *ngFor="let nv of item.notVoted" lines="full">
+              <ion-label>{{nv.full_name}}</ion-label>
+            </ion-item>
+          </ion-list>
+        </div>
+        <div *ngIf="showList">
+          <ion-list>
+            <ion-item *ngFor="let nv of item.hasVoted" lines="full">
+              <ion-label>{{nv.full_name}}</ion-label>
+            </ion-item>
+          </ion-list>
+        </div>
+      </div>
+    </ion-list>
+  </div>
+</ion-content>

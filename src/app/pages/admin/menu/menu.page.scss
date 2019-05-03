@@ -1,0 +1,23 @@
+.active-item {
+    border-left: 8px solid var(--ion-color-primary);
+}
+ion-item {
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+.text {
+    margin-left: 10px;
+}
+.img {
+    width: 75px;
+    height: 75px;
+}
+.title {
+    font-weight: bold;
+    color: black;
+}
+.sub-title {
+    font-weight: bold;
+    font-style: italic;
+    color: black;
+}

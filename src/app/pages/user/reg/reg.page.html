@@ -1,0 +1,84 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button (click)="back()">
+        <ion-icon slot="icon-only" name="arrow-round-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Sign up</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding class="animated fadeIn login auth-page background">
+  <div class="scroll-content">
+    <div class="login-content">
+      <form [formGroup]='loginform' class="list-form">
+        <ion-item lines="none">
+          <ion-label position="stacked" class="label">
+            <ion-icon slot="start" name="contact"></ion-icon>
+            Full Name:
+          </ion-label>
+          <ion-input class="input-field" formControlName='full_name' type='text'></ion-input>
+        </ion-item>
+        <div class="error-messages">
+          <ng-container *ngFor='let error of error_messages.full_name'>
+            <div class="error-message"
+              *ngIf="loginform.get('full_name').hasError(error.type) && (loginform.get('full_name').dirty || loginform.get('full_name').touched)">
+              {{error.message}}
+            </div>
+          </ng-container>
+        </div>
+
+        <ion-item lines="none">
+          <ion-label position="stacked" class="label">
+            <ion-icon slot="start" name="mail"></ion-icon>
+            Email:
+          </ion-label>
+          <ion-input class="input-field" formControlName='email' type='email'></ion-input>
+        </ion-item>
+        <div class="error-messages">
+          <ng-container *ngFor='let error of error_messages.email'>
+            <div class="error-message"
+              *ngIf="loginform.get('email').hasError(error.type) && (loginform.get('email').dirty || loginform.get('email').touched)">
+              {{error.message}}
+            </div>
+          </ng-container>
+        </div>
+
+        <ion-item lines="none">
+          <ion-label position="stacked" class="label">
+            <ion-icon slot="start" name="person"></ion-icon>
+            Username:
+          </ion-label>
+          <ion-input class="input-field" formControlName='user_name' type='text'></ion-input>
+        </ion-item>
+        <div class="error-messages">
+          <ng-container *ngFor='let error of error_messages.user_name'>
+            <div class="error-message"
+              *ngIf="loginform.get('user_name').hasError(error.type) && (loginform.get('user_name').dirty || loginform.get('user_name').touched)">
+              {{error.message}}
+            </div>
+          </ng-container>
+        </div>
+
+        <ion-item lines="none">
+          <ion-label position="stacked" class="label">
+            <ion-icon slot="start" name="lock"></ion-icon>
+            Password:
+          </ion-label>
+          <ion-input class="input-field" formControlName='password' type='password'></ion-input>
+        </ion-item>
+        <div class="error-messages">
+          <ng-container *ngFor='let error of error_messages.password'>
+            <div class="error-message"
+              *ngIf="loginform.get('password').hasError(error.type) && (loginform.get('password').dirty || loginform.get('password').touched)">
+              {{error.message}}
+            </div>
+          </ng-container>
+        </div>
+      </form>
+      <ion-button expand="block" (click)='signUp()' [disabled]='!loginform.valid' color='primary'>
+        Login</ion-button>
+    </div>
+  </div>
+</ion-content>

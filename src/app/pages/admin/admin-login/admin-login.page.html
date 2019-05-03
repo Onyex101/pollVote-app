@@ -1,0 +1,50 @@
+<ion-content padding class="animated fadeIn login auth-page background">
+  <div class="scroll-content">
+    <div class="login-content">
+      <div padding-horizontal text-center class="animated fadeInDown">
+        <img class="logo" src="assets/imgs/logo.png" />
+      </div>
+
+      <form [formGroup]='loginform' class="list-form">
+        <ion-item lines="none">
+          <ion-input class="input-field" placeholder="Username" formControlName='user_name' type='text'></ion-input>
+        </ion-item>
+        <div class="error-messages">
+          <ng-container *ngFor='let error of error_messages.user_name'>
+            <div class="error-message"
+              *ngIf="loginform.get('user_name').hasError(error.type) && (loginform.get('user_name').dirty || loginform.get('user_name').touched)">
+              {{error.message}}
+            </div>
+          </ng-container>
+        </div>
+
+        <ion-item lines="none" style="margin-top: 10px;">
+          <ion-input class="input-field" placeholder="Password" formControlName='password' type='password'></ion-input>
+        </ion-item>
+        <div class="error-messages">
+          <ng-container *ngFor='let error of error_messages.password'>
+            <div class="error-message"
+              *ngIf="loginform.get('password').hasError(error.type) && (loginform.get('password').dirty || loginform.get('password').touched)">
+              {{error.message}}
+            </div>
+          </ng-container>
+        </div>
+        <ion-button style="margin-top: 10px;" (click)='login()' [disabled]='!loginform.valid' expand="block"
+          shape="round" color='primary'>Login
+        </ion-button>
+      </form>
+      <p text-right ion-text class="text-primary" tappable (click)="forgotPass()"><strong>Forgot Password?</strong></p>
+      <!-- Other links -->
+      <div text-center margin-top>
+        <ion-text (click)="signUp()" class="text-primary" tappable>
+          <span>New Admin? <strong>Sign up</strong></span>
+        </ion-text>
+      </div>
+      <div text-center margin-top>
+        <ion-text tappable class="text-primary" (click)="voter()">
+          <span>Return? <strong>Voter</strong></span>
+        </ion-text>
+      </div>
+    </div>
+  </div>
+</ion-content>

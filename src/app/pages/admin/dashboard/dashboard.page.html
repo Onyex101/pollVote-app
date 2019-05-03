@@ -1,0 +1,87 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Dashboard</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content style="font-weight: bold;">
+  <div *ngIf="showData" color="light">
+    <div class="flip" text-center style="margin-top: 5px;">
+      <app-flip-timer></app-flip-timer>
+    </div>
+    <div color="light">
+      <ion-card *ngFor="let poll of polls">
+        <ion-card-header>
+          <ion-card-title>current poll</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          {{poll.question}}
+        </ion-card-content>
+      </ion-card>
+    </div>
+
+    <div tappable routerLink="/menu/dash/list" routerDirection="forward">
+      <ion-list>
+        <ion-item lines="none" *ngFor="let p of progress">
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                <div>
+                  {{p.field}}
+                </div>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <div>
+                  <progress-bar [progress]='p.value' style="width: 100% !important;"
+                    [color-degraded]="{'0': '#222',  '15': '#FE6601', '25': '#32db64', '65': '#2C6700'}">
+                  </progress-bar>
+                </div>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-item>
+      </ion-list>
+    </div>
+
+    <ion-card>
+      <ion-card-content>
+        <ion-list>
+          <ion-item lines="none">
+            <ion-label>pending users</ion-label>
+            <ion-badge slot="end">{{pend}}</ion-badge>
+          </ion-item>
+          <ion-item lines="none">
+            <ion-label>authorised users</ion-label>
+            <ion-badge slot="end">{{auth}}</ion-badge>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+  </div>
+  <div *ngIf="!showData" text-center>
+    <h2>No poll created yet!!</h2>
+    <div text-center>
+      <img style="width: 150px; height: 150px;" src="assets/imgs/sad.jpg" />
+    </div>
+    <ion-button fill="outline" routerLink="/menu/new" >Create poll</ion-button>
+    <ion-card>
+      <ion-card-content>
+        <ion-list>
+          <ion-item lines="none">
+            <ion-label>pending users</ion-label>
+            <ion-badge slot="end">{{pend}}</ion-badge>
+          </ion-item>
+          <ion-item lines="none">
+            <ion-label>authorised users</ion-label>
+            <ion-badge slot="end">{{auth}}</ion-badge>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

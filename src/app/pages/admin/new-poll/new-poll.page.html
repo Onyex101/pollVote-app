@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Create a new Poll</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <div *ngIf="showForm">
+    <form [formGroup]="myForm">
+      <ion-list lines="none">
+        <ion-item>
+          <ion-label>Duration:</ion-label>
+          <ion-datetime displayFormat="MMM DD, YYYY HH:mm" min="2019" max="2019-12-31" formControlName='duration'>
+          </ion-datetime>
+        </ion-item>
+        <ion-item>
+          <ion-textarea rows="4" formControlName="question" placeholder='Question' id="border"></ion-textarea>
+        </ion-item>
+        <div formArrayName="options" style="margin-top: 10px">
+          <section [formGroupName]="i" *ngFor="let tech of myForm.controls['options'].controls; let i = index">
+            <ion-item-group>
+              <ion-item>
+                <ion-input type="text" formControlName="field" placeholder='Options...'></ion-input>
+                <ion-icon (click)="removeInputField(i)" name="close-circle"></ion-icon>
+              </ion-item>
+            </ion-item-group>
+          </section>
+        </div>
+        <ion-button expand="block" (click)="addNewInputField()">add</ion-button>
+      </ion-list>
+    </form>
+  </div>
+  <div *ngIf="!showForm" text-center>
+    <h3>Poll already created!!!</h3>
+  </div>
+</ion-content>
+<ion-footer *ngIf="showForm">
+  <ion-toolbar>
+      <ion-button expand="block" [disabled]="!myForm.valid" (click)="submit()">Create</ion-button>
+  </ion-toolbar>
+</ion-footer>

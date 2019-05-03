@@ -1,0 +1,117 @@
+ion-content {
+  --background: url('../../../../assets/imgs/background.png') no-repeat;
+  background-size: cover;
+};
+
+ion-item {
+  --background: transparent;
+  margin-bottom: 15px !important;
+};
+
+.label {
+  margin-bottom: 5px;
+  color: #FFCF79;
+}
+
+.error-messages {
+  font-size: 0.7em;
+  color: red;
+  text-align: center;
+}
+.input-field {
+  background-color: transparent;
+  border-radius: 5px;
+  padding-left: 15px !important;
+  border: 1px solid #FFCF79;
+  color: #FFCF79;
+}
+
+// Animate CSS
+.animated {
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+
+.animated.infinite {
+  animation-iteration-count: infinite;
+}
+
+.animated.hinge {
+  animation-duration: 2s;
+}
+
+.animated.flipOutX,
+.animated.flipOutY,
+.animated.bounceIn,
+.animated.bounceOut {
+  animation-duration: .75s;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.fadeIn {
+  animation-name: fadeIn;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -100%, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.fadeInDown {
+  animation-name: fadeInDown;
+}
+
+// style for auth pages
+.auth-page {
+  &::after {
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: 0;
+  }
+
+  .scroll-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .login-content {
+      width: 106%;
+
+      .list-form {
+        padding: 0;
+        margin-bottom: 0;
+
+        ion-item {
+          padding: 0;
+
+          &:first-child {
+            border-top: none;
+          }
+
+          &:after {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}

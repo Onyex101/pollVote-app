@@ -1,0 +1,66 @@
+<ion-content padding class="animated fadeIn login auth-page">
+  <div class="scroll-content">
+    <diV class="login-content">
+      <div padding-horizontal text-center class="animated fadeInDown">
+        <img class="logo" src="assets/imgs/logo.png" />
+      </div>
+
+      <form [formGroup]='loginform' class="list-form">
+        <ion-item lines="none">
+          <ion-input class="input-field" placeholder="Admin Code" formControlName='code' type='text'></ion-input>
+        </ion-item>
+        <div class="error-messages">
+          <ng-container *ngFor='let error of error_messages.code'>
+            <div class="error-message"
+              *ngIf="loginform.get('code').hasError(error.type) && (loginform.get('code').dirty || loginform.get('code').touched)">
+              {{error.message}}
+            </div>
+          </ng-container>
+        </div>
+
+        <ion-item lines="none" style="padding-top: 5px;">
+          <ion-input class="input-field" placeholder="Username" formControlName='user_name' type='text'></ion-input>
+        </ion-item>
+        <div class="error-messages">
+          <ng-container *ngFor='let error of error_messages.user_name'>
+            <div class="error-message"
+              *ngIf="loginform.get('user_name').hasError(error.type) && (loginform.get('user_name').dirty || loginform.get('user_name').touched)">
+              {{error.message}}
+            </div>
+          </ng-container>
+        </div>
+
+        <ion-item lines="none" style="padding-top: 5px;">
+          <ion-input class="input-field" placeholder="Password" formControlName='password' type='password'></ion-input>
+        </ion-item>
+        <div class="error-messages">
+          <ng-container *ngFor='let error of error_messages.password'>
+            <div class="error-message"
+              *ngIf="loginform.get('password').hasError(error.type) && (loginform.get('password').dirty || loginform.get('password').touched)">
+              {{error.message}}
+            </div>
+          </ng-container>
+        </div>
+      </form>
+      <p text-right ion-text class="text-primary" tappable (click)="forgotPass()">Forgot Password?</p>
+
+      <div>
+        <ion-button expand="block" shape="round" color="primary" [disabled]='!loginform.valid' (click)="login()">
+          Login
+        </ion-button>
+      </div>
+
+      <!-- Other links -->
+      <div text-center margin-top>
+        <ion-text (click)="signUp()" class="text-primary" tappable>
+            <span>New here? <strong>Sign up</strong></span>
+        </ion-text>
+      </div>
+      <div text-center margin-top>
+        <ion-text tappable class="text-primary" (click)="admin()">
+            <span>Admin? <strong>Login</strong></span>
+        </ion-text>
+      </div>
+    </diV>
+  </div>
+</ion-content>
