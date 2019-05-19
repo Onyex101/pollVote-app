@@ -10,15 +10,14 @@ export class PusherService {
   private channel;
   constructor(
     private share: ShareDataService
-  ) {
+  ) {}
+
+  init() {
     const code = this.share.getCode();
     const pusher = new Pusher('b2c8f549b923bdb99172', {
       cluster: 'eu'
     });
     this.channel = pusher.subscribe(code);
-  }
-
-  init() {
     return this.channel;
   }
 }

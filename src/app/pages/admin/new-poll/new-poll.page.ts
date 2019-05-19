@@ -30,12 +30,12 @@ export class NewPollPage implements OnInit {
     });
     loader.present();
     this.admin.currentRes().then((val) => {
-      console.log(val);
+      // console.log(val);
       loader.dismiss().then(() => {
         this.showForm = false;
       });
     }).catch((e) => {
-      console.log('error', e);
+      // console.log('error', e);
       loader.dismiss().then(() => {
         this.showForm = true;
       });
@@ -59,12 +59,12 @@ export class NewPollPage implements OnInit {
   }
 
   addNewInputField(): void {
-    const control = <FormArray>this.myForm.controls.options;
+    const control = this.myForm.controls.options as FormArray;
     control.push(this.initFields());
   }
 
   removeInputField(i: number): void {
-    const control = <FormArray>this.myForm.controls.options;
+    const control = this.myForm.controls.options as FormArray;
     control.removeAt(i);
   }
 
@@ -75,19 +75,19 @@ export class NewPollPage implements OnInit {
         spinner: 'bubbles'
       });
       loader.present();
-      console.log(this.myForm.value);
+      // console.log(this.myForm.value);
       const payload = JSON.stringify(this.myForm.value);
-      console.log(payload);
+      // console.log(payload);
       this.admin.createPPoll(payload).then((val) => {
         this.myForm.reset();
-        console.log(val);
+        // console.log(val);
         loader.dismiss().then(() => {
-          this.router.navigateByUrl('/menu');
+          this.router.navigateByUrl('/menu/dash');
         });
       }).catch((e) => {
         this.myForm.reset();
         loader.dismiss();
-        console.log(e);
+        // console.log(e);
       });
     }
   }

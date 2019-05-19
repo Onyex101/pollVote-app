@@ -38,9 +38,9 @@ export class ArchivesPage implements OnInit {
         a = val;
         this.load = a.archive;
         this.load[0].open = true;
-        console.log('archive', this.load);
+        // console.log('archive', this.load);
       }).catch((e) => {
-        console.log(e);
+        // console.log(e);
       });
       loader.dismiss();
     });

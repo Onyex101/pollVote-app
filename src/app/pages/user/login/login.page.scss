@@ -1,6 +1,5 @@
 ion-content {
-    --background: url('../../../../assets/imgs/background.png') no-repeat;
-    background-size: cover;
+    --background: #f4f5f8;
 };
 
 ion-item {
@@ -8,7 +7,8 @@ ion-item {
 };
 
 .text-primary {
-  color: #FFCF79
+  color: black;
+  font-weight: bold;
 };
 
 .error-messages {
@@ -18,11 +18,11 @@ ion-item {
 }
 .input-field {
     background-color: transparent;
-    color: #FFCF79;
+    color: black;
     font-style: italic;
+    font-weight: bold;
     border-radius: 20px;
     padding-left: 15px !important;
-    border: 1px solid #FFCF79;
 }
 
 // Animate CSS

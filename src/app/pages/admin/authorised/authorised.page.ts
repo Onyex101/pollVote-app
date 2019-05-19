@@ -26,7 +26,7 @@ export class AuthorisedPage implements OnInit {
     });
     loader.present();
     this.admin.authorized().then((val) => {
-      console.log(val);
+      // console.log(val);
       this.authUsers = val;
       if (this.isEmpty(this.authUsers)) {
         this.loadInfo = false;
@@ -35,7 +35,7 @@ export class AuthorisedPage implements OnInit {
       }
       loader.dismiss();
     }).catch((e) => {
-      console.log(e);
+      // console.log(e);
     });
   }
 

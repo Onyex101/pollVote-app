@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar color="primary">
+  <ion-toolbar>
     <ion-buttons slot="start">
       <ion-button (click)="back()">
         <ion-icon slot="icon-only" name="arrow-round-back"></ion-icon>
@@ -11,22 +11,22 @@
 
 <ion-content style="font-weight: bold;">
   <div *ngIf="initialComp" padding>
-    <ion-card *ngIf="didLoad">
+    <ion-card>
       <ion-card-content text-center text-wrap class="text">
         {{quiz.question}}
       </ion-card-content>
     </ion-card>
-    <ion-list radio-group *ngIf="didLoad">
+    <ion-list radio-group>
       <ion-radio-group>
         <ion-item *ngFor="let op of quiz.options, let i = index">
-          <ion-label>{{op.field}}</ion-label>
+          <ion-label class="opt">{{op.field}}</ion-label>
           <ion-radio (ionSelect)="sendPoll(op._id)"></ion-radio>
         </ion-item>
       </ion-radio-group>
     </ion-list>
   </div>
 
-  <div *ngIf="!initialComp">
+  <div *ngIf="voteInfo">
     <ion-card>
       <ion-card-content text-center text-wrap class="text">
         {{title}}
@@ -38,7 +38,7 @@
           <ion-grid>
             <ion-row>
               <ion-col>
-                <div>
+                <div class="opt">
                   {{p.field}}
                 </div>
               </ion-col>
@@ -55,6 +55,16 @@
           </ion-grid>
         </ion-item>
       </ion-list>
+    </div>
+  </div>
+
+  <div *ngIf="noAuth">
+    <div padding text-center style="margin-top: 40px;">
+      <div text-center>
+        <img style="width: 150px; height: 150px;" src="assets/imgs/sad.jpg" />
+      </div>
+      <div class="text">Not yet Authorised</div>
+      <div class="text2" text-wrap>Please ensure you've been authorised by your admin!!</div>
     </div>
   </div>
 </ion-content>

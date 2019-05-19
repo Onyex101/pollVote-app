@@ -56,9 +56,9 @@ export class MenuPage implements OnInit {
     this.admin.dashboard().then((val) => {
       const userDetails: any = val;
       this.user = userDetails.user;
-      console.log(this.user);
+      // console.log(this.user);
     }).catch((e) => {
-      console.log(e);
+      // console.log(e);
     });
   }
 

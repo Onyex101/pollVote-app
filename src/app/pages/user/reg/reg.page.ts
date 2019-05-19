@@ -11,19 +11,20 @@ import { ToastController } from '@ionic/angular';
 })
 export class RegPage implements OnInit {
   loginform: FormGroup;
+// tslint:disable-next-line: variable-name
   error_messages = {
-    'full_name': [
+    full_name: [
       { type: 'required', message: 'Full name is required'}
     ],
-    'email': [
+    email: [
       { type: 'required', message: 'email is required'},
       { type: 'email', message: 'invalid email'}
     ],
-    'user_name': [
+    user_name: [
       { type: 'required', message: 'user_name is required' },
       { type: 'maxLength', message: 'username lenght must be lower than or equal to 50 characters'}
     ],
-    'password': [
+    password: [
       { type: 'required', message: 'Password is required'},
       { type: 'minLength', message: 'Password Length must be longer or equal to 6 characters'},
       { type: 'maxLength', message: 'Password length must be lower or equal to 50 characters'}
@@ -61,9 +62,9 @@ export class RegPage implements OnInit {
 
   signUp() {
     const payload = JSON.stringify(this.loginform.value);
-    console.log(payload);
-    this.voter.signup(payload).then(async(res) => {
-      console.log(res);
+    // console.log(payload);
+    this.voter.signup(payload).then(async () => {
+      // console.log(res);
       const toast = await this.toastCtrl.create({
         message: 'Account successfully created!',
         duration: 2000,
@@ -73,7 +74,7 @@ export class RegPage implements OnInit {
         this.router.navigateByUrl('/login');
       });
     }).catch((err) => {
-      console.log(err);
+      // console.log(err);
     });
   }
 

@@ -13,15 +13,16 @@ import { Router } from '@angular/router';
 export class LoginPage implements OnInit {
 
   loginform: FormGroup;
+// tslint:disable-next-line: variable-name
   error_messages = {
-    'user_name': [
+    user_name: [
       { type: 'required', message: 'user_name is required' },
       { type: 'maxLength', message: 'username lenght must be lower than or equal to 50 characters' }
     ],
-    'code': [
+    code: [
       { type: 'required', message: 'Admin code is required' }
     ],
-    'password': [
+    password: [
       { type: 'required', message: 'Password is required' },
       { type: 'minLength', message: 'Password Length must be longer or equal to 6 characters' },
       { type: 'maxLength', message: 'Password length must be lower or equal to 50 characters' }
@@ -59,13 +60,13 @@ export class LoginPage implements OnInit {
 
    login() {
     const payload = JSON.stringify(this.loginform.value);
-    console.log(payload);
+    // console.log(payload);
     const code = this.loginform.value.code;
-    console.log('code', code);
-    this.voter.login(payload).then(async(res) => {
+    // console.log('code', code);
+    this.voter.login(payload).then(async () => {
       this.shareData.setCode(code);
       this.loginform.reset();
-      console.log(res);
+      // console.log(res);
       const toast = await this.toastCtrl.create({
         message: 'Login Successfull!',
         duration: 2000,
@@ -75,7 +76,7 @@ export class LoginPage implements OnInit {
         this.router.navigateByUrl('/voter');
       });
     }).catch((e) => {
-      console.log(e);
+      // console.log(e);
       this.presentToast();
     });
   }
@@ -105,13 +106,13 @@ export class LoginPage implements OnInit {
         {
           text: 'Cancel',
           handler: data => {
-            // console.log('Cancel clicked', data);
+            // // console.log('Cancel clicked', data);
           }
         },
         {
           text: 'Send',
           handler: async data => {
-            console.log('Send clicked', data);
+            // console.log('Send clicked', data);
             const loader = await this.loadingCtrl.create({
               showBackdrop: true,
               spinner: 'bubbles'
@@ -131,7 +132,7 @@ export class LoginPage implements OnInit {
               });
             }).catch((e) => {
               loader.dismiss();
-              console.log(e);
+              // console.log(e);
             });
           }
         }

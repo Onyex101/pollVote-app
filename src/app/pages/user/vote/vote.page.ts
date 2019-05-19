@@ -13,8 +13,9 @@ import { VoterService } from './../../../service/voter/voter.service';
 export class VotePage implements OnInit {
 
   private vote;
-  initialComp = true;
-  didLoad = false;
+  initialComp = false;
+  noAuth = false;
+  voteInfo = false;
   quiz: any;
   data: any;
   title;
@@ -31,12 +32,10 @@ export class VotePage implements OnInit {
     this.data = {
       code: this.share.getCode()
     };
-    // this.pushNot = this.route.snapshot.params['price'];
-    console.log('code', this.data);
+    // console.log('code', this.data);
   }
 
   async ngOnInit() {
-    this.loadPusher();
     const loader = await this.loadingCtrl.create({
       showBackdrop: true,
       spinner: 'bubbles'
@@ -46,28 +45,29 @@ export class VotePage implements OnInit {
         let b: any;
         b = val;
         this.quiz = val;
-        console.log(this.quiz);
+        // console.log(this.quiz);
         if (b.message === 'Already Voted!') {
           this.progressBar().then((v) => {
             let n: any;
             n = v;
             this.result = n.options;
             this.title = n.title;
-            this.didLoad = false;
-            this.initialComp = false;
-            console.log(n);
+            this.voteInfo = true;
+            // console.log(n);
           }).catch((e) => {
-            console.log(e);
+            // console.log(e);
           });
+        } else if (b.message === 'No authorization') {
+          this.noAuth = true;
         } else {
           this.quiz.options.forEach((elment) => {
-            elment['isChecked'] = false;
+            elment.isChecked = false;
           });
-          this.didLoad = true;
-          console.log(this.quiz);
+          this.loadPusher();
+          this.initialComp = true;
         }
       }).catch((e) => {
-        console.log(e);
+        // console.log(e);
       });
       loader.dismiss();
     });
@@ -78,37 +78,35 @@ export class VotePage implements OnInit {
     this.vote = {};
     this.vote._id = id;
     this.vote.code = this.data.code;
-    console.log(this.vote);
+    // console.log(this.vote);
     const loader = await this.loadingCtrl.create({
       showBackdrop: true,
       spinner: 'bubbles'
     });
     loader.present().then(() => {
       this.voter.sendVote(this.vote).then((val) => {
-        console.log(val);
+        // console.log(val);
         this.progressBar().then((v) => {
           let a: any;
           a = v;
           this.title = a.title;
           this.result = a.options;
-          this.didLoad = false;
           this.initialComp = false;
-          console.log(this.result);
+          this.voteInfo = true;
+          // console.log(this.result);
         });
       }).catch((err) => {
-        this.didLoad = false;
-        this.initialComp = false;
-        console.log(err);
+        // console.log(err);
       });
       loader.dismiss();
     });
   }
 
   loadPusher() {
-    console.log('page loaded');
+    // console.log('page loaded');
     const channel = this.pusher.init();
     channel.bind('new-entry', (data) => {
-      console.log('pusher info', data);
+      // console.log('pusher info', data);
       let a: any;
       a = data;
       this.title = a.title;

@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar color="primary">
+  <ion-toolbar>
     <ion-buttons slot="start">
       <ion-button (click)="back()">
         <ion-icon slot="icon-only" name="arrow-round-back"></ion-icon>
@@ -93,8 +93,8 @@
           </ng-container>
         </div>
       </form>
-      <ion-button expand="block" (click)='signUp()' [disabled]='!regform.valid' color='primary'>
-        Login</ion-button>
+      <ion-button expand="block" (click)='signUp()' [disabled]='!regform.valid'>
+        Sign Up</ion-button>
     </div>
   </div>
 </ion-content>

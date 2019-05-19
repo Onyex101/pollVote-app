@@ -1,12 +1,21 @@
 .active-item {
     border-left: 8px solid var(--ion-color-primary);
 }
+
+.toolbar {
+    padding-left: 8px;
+    --background: #f4f5f8;
+    color: black;
+}
 ion-item {
     padding-bottom: 5px;
     padding-top: 5px;
 }
 .text {
     margin-left: 10px;
+    font-size: 16px;
+    color: black;
+    font-weight: bold;
 }
 .img {
     width: 75px;

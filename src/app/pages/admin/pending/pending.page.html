@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar color="primary">
+  <ion-toolbar>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
@@ -23,7 +23,7 @@
         <ion-checkbox item-end [(ngModel)]="pend.isChecked"></ion-checkbox>
       </ion-item>
     </ion-list>
-    <ion-button fill="outline" float-right (click)="authorise()">Authorise</ion-button>
+    <ion-button fill="outline" color="primary" float-right (click)="authorise()">Authorise</ion-button>
   </div>
 
   <div *ngIf="!loadInfo" text-center>

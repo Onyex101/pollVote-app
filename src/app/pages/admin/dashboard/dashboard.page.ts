@@ -45,7 +45,7 @@ export class DashboardPage implements OnInit {
     });
     loader.present().then(() => {
       this.admin.dashboard().then((val) => {
-        console.log(val);
+        // console.log(val);
         this.load = val;
         if (this.isEmpty(this.load.val)) {
           this.showData = false;
@@ -56,22 +56,22 @@ export class DashboardPage implements OnInit {
         const y = this.load.pending;
         if (this.isEmpty(y)) {
           this.pend = 0;
-          console.log('pending voters empty');
+          // console.log('pending voters empty');
         } else {
           y.forEach((element) => {
-            console.log('element', element);
+            // console.log('element', element);
             this.pend += 1;
-            console.log('count', this.pend);
+            // console.log('count', this.pend);
           });
         }
         const a = this.load.auth;
         if (this.isEmpty(a)) {
           this.auth = 0;
-          console.log('auth voters empty');
+          // console.log('auth voters empty');
         } else {
           a.forEach(() => {
             this.auth += 1;
-            console.log('auth no', this.auth);
+            // console.log('auth no', this.auth);
           });
         }
         if (this.showData !== false) {
@@ -79,22 +79,23 @@ export class DashboardPage implements OnInit {
             let v: any;
             v = b;
             this.progress = v.options;
-            console.log('for progress bar: ', v);
+            // console.log('for progress bar: ', v);
             this.duration = v.duration;
-            console.log('duration', this.duration);
+            // console.log('duration', this.duration);
+// tslint:disable-next-line: variable-name
             const poll_id = v.id;
             this.share.setId(poll_id);
             this.share.changeMessage(this.duration);
             this.checkDuration(this.duration);
-            console.log(this.progress);
+            // console.log(this.progress);
           }).catch((e) => {
-            console.log(e);
+            // console.log(e);
           });
         }
         loader.dismiss();
       });
     }).catch((err) => {
-      console.log(err);
+      // console.log(err);
       loader.dismiss();
     });
   }
@@ -130,7 +131,7 @@ export class DashboardPage implements OnInit {
   }
 
   countDown(time: number) {
-    const x = setInterval(function () {
+    const x = setInterval(function() {
       // Time calculations for days, hours, minutes and seconds
       this.days = Math.floor(time / (1000 * 60 * 60 * 24));
       this.hours = Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -138,7 +139,7 @@ export class DashboardPage implements OnInit {
       this.seconds = Math.floor((time % (1000 * 60)) / 1000);
 
       time--;
-      // If the count down is finished, write some text 
+      // If the count down is finished, write some text
       if (time < 0) {
         clearInterval(x);
       }

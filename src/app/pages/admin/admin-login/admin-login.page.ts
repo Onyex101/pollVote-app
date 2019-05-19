@@ -13,12 +13,13 @@ export class AdminLoginPage implements OnInit {
 
   loginform: FormGroup;
   error;
+// tslint:disable-next-line: variable-name
   error_messages = {
-    'user_name': [
+    user_name: [
       { type: 'required', message: 'user_name is required' },
       { type: 'maxLength', message: 'username lenght must be lower than or equal to 50 characters'}
     ],
-    'password': [
+    password: [
       { type: 'required', message: 'Password is required'},
       { type: 'minLength', message: 'Password Length must be longer or equal to 6 characters'},
       { type: 'maxLength', message: 'Password length must be lower or equal to 50 characters'}
@@ -58,9 +59,9 @@ export class AdminLoginPage implements OnInit {
     });
     loader.present();
     const payload = JSON.stringify(this.loginform.value);
-    console.log(payload);
+    // console.log(payload);
     this.admin.login(payload).then((res) => {
-      console.log(res);
+      // console.log(res);
       this.loginform.reset();
       loader.dismiss().then(() => {
         this.router.navigateByUrl('menu/dash');
@@ -68,7 +69,7 @@ export class AdminLoginPage implements OnInit {
     }).catch(async (err) => {
       this.loginform.reset();
       this.error = err;
-      console.log(this.error.error.message);
+      // console.log(this.error.error.message);
       loader.dismiss();
       if (this.error.error.message) {
         const toast = await this.toastCtrl.create({
@@ -96,7 +97,7 @@ export class AdminLoginPage implements OnInit {
         {
           text: 'Cancel',
           handler: () => {
-            console.log('Cancel clicked');
+            // console.log('Cancel clicked');
           }
         },
         {
@@ -107,9 +108,9 @@ export class AdminLoginPage implements OnInit {
               spinner: 'bubbles'
             });
             loader.present();
-            console.log('Send clicked', data);
+            // console.log('Send clicked', data);
             this.admin.passwordReset(data).then((val) => {
-              console.log(val);
+              // console.log(val);
               loader.dismiss().then(async () => {
                 const toast = await this.toastCtrl.create({
                   message: 'success, pls check your mail',
@@ -123,7 +124,7 @@ export class AdminLoginPage implements OnInit {
               });
             }).catch((e) => {
               loader.dismiss();
-              console.log(e);
+              // console.log(e);
             });
           }
         }

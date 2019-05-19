@@ -37,17 +37,17 @@ export class PendingPage implements OnInit {
       this.admin.pending().then((res) => {
         this.pendingUsers = res;
         this.pendingUsers.forEach((val) => {
-          val['isChecked'] = false;
+          val.isChecked = false;
         });
         if (this.isEmpty(this.pendingUsers)) {
           this.loadInfo = false;
         } else {
           this.loadInfo = true;
         }
-        console.log(this.pendingUsers);
+        // console.log(this.pendingUsers);
         resolve();
       }).catch((err) => {
-        console.log(err);
+        // console.log(err);
         reject(err);
       });
     });
@@ -55,26 +55,26 @@ export class PendingPage implements OnInit {
 
   authorise() {
     this.pendSelected = [];
-    console.log(this.pendingUsers);
+    // console.log(this.pendingUsers);
     this.pendingUsers.forEach((val) => {
       if (val.isChecked === true) {
         this.pendSelected.push(val);
       }
     });
     const payload = { pending: this.pendSelected };
-    console.log('payload:', payload);
+    // console.log('payload:', payload);
     this.admin.pendAuth(payload).then((val) => {
-      console.log(val);
+      // console.log(val);
       this.loadData();
     }).catch((err) => {
-      console.log(err);
+      // console.log(err);
       this.loadData();
     });
   }
 
   selectAll() {
     this.toggle = !this.toggle;
-    console.log(this.toggle);
+    // console.log(this.toggle);
     if (this.toggle === true) {
       this.pendingUsers.forEach((element) => {
         element.isChecked = true;

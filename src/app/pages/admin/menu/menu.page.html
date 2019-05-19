@@ -1,7 +1,7 @@
 <ion-split-pane>
   <ion-menu contentId="content">
     <ion-header>
-      <ion-toolbar style="padding-left: 8px;">
+      <ion-toolbar class="toolbar">
         <div>
           <img class="img" src="assets/imgs/icon.png">
         </div>
@@ -22,14 +22,14 @@
       </ion-list>
     </ion-content>
     <ion-footer>
-      <ion-toolbar>
+      <ion-toolbar class="toolbar">
         <ion-grid>
           <ion-row>
             <ion-col>
-              <ion-button color="primary" expand="block" (click)="logout('signIn')">Logout</ion-button>
+              <ion-button expand="block" (click)="logout('signIn')">Logout</ion-button>
             </ion-col>
             <ion-col>
-              <ion-button color="primary" expand="block" (click)="logout('voter')">Voter?</ion-button>
+              <ion-button expand="block" (click)="logout('voter')">Voter?</ion-button>
             </ion-col>
           </ion-row>
         </ion-grid>

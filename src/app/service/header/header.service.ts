@@ -8,6 +8,7 @@ import { Storage } from '@ionic/storage';
 })
 export class HeaderService {
 
+// tslint:disable-next-line: variable-name
   protected api_url: string;
   protected key: string;
 

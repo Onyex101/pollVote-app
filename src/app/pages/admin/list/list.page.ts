@@ -40,14 +40,14 @@ export class ListPage implements OnInit {
     });
     loader.present().then(() => {
       this.admin.voteStatus(this.payload).then((res) => {
-        console.log(res);
+        // console.log(res);
         let a: any;
         a = res;
         this.voted = a.hasVoted;
         this.notVoted = a.notVoted;
         loader.dismiss();
       }).catch((err) => {
-        console.log(err);
+        // console.log(err);
         loader.dismiss();
       });
     });
